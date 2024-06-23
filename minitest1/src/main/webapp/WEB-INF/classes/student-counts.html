@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout.html::head">
+    <meta charset="UTF-8">
+    <title>Number of students in the class</title>
+</head>
+<body>
+
+<h3>Number of Students in the Class</h3>
+<p><a th:href="@{/classes}">Back to Classes List</a></p>
+<p><a th:href="@{/students}">Back to Student List</a></p>
+
+<table id="students">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Classes</th>
+        <th>Student Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="count, iterStat : ${classesCounts}">
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${count.classes}"></td>
+        <td th:text="${count.studentNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:replace="/layout :: footer"></footer>
+
+</body>
+</html>

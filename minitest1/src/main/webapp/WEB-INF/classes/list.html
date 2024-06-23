@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List Classes</title>
+</head>
+<body>
+<h3>Classes</h3>
+<p>
+    <a th:href="@{/classes/create}">
+        Add new classes
+    </a>
+</p>
+<p>
+    <a th:href="@{/students}">
+        Students list
+    </a>
+</p>
+<p>
+    <a th:href="@{/classes/student-counts}">
+        Number of Students in the Class
+    </a>
+</p>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id = "students">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c, cStatus : ${classes}">
+        <td th:text="${cStatus.count}"></td>
+        <td><a th:href="@{/classes/view-classes/{id}(id=${c.getId()})}" th:text="${c.getName()}"></a></td>
+        <td><a th:href="@{/classes/update/{id}(id=${c.getId()})}">update</a></td>
+        <td><a th:href="@{/classes/delete/{id}(id=${c.getId()})}">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
