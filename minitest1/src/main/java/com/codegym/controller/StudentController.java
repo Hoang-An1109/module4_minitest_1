@@ -7,6 +7,7 @@ import com.codegym.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +44,9 @@ public class StudentController {
     }
 
     @GetMapping
-    public ModelAndView listStudent(Pageable pageable) {
+    public ModelAndView listStudent(@RequestParam(defaultValue = "0") int page,
+                                    @RequestParam(defaultValue = "5") int size) {
+        Pageable pageable= PageRequest.of(page,size);
         ModelAndView modelAndView = new ModelAndView("/student/list");
         Page<Student> students = studentService.findAll(pageable);
         modelAndView.addObject("students", students);

@@ -55,7 +55,8 @@
         <td th:text="${s.firstName}"></td>
         <td th:text="${s.lastName}"></td>
         <td th:text="${s.age}"></td>
-        <td><img width="100" height="100" th:src="@{'/image/' + ${s.img}}" alt="img" src=""></td>
+<!--        <td><img width="100" height="100" th:src="@{'/image/' + ${s.img}}" alt="img" src=""></td>-->
+        <td><img width="100" height="100" th:src="@{/image/{imageName}(imageName=${s.img})}" alt="image"></td>
         <td th:text="${s.phoneNumber}"></td>
         <td th:text="${s.dob}"></td>
         <td th:text="${s.address}"></td>
@@ -68,11 +69,11 @@
 </table>
 
 <a class="btn btn-primary" th:if="${students.hasPrevious()}"
-   th:href="@{/students/page(page=${students.number - 1})}">Previous</a>
+   th:href="@{/students(page=${students.number - 1}, size=${students.size})}">Previous</a>
 <span th:text="${students.number + 1}"></span> | <span th:text="${students.totalPages}"></span>
 
 <a class="btn btn-primary" th:if="${students.hasNext()}"
-   th:href="@{/students/page(page=${students.number + 1})}">Next</a>
+   th:href="@{/students(page=${students.number + 1}, size=${students.size})}">Next</a>
 
 <footer th:replace="/layout :: footer"></footer>
 </body>

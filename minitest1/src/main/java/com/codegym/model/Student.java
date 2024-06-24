@@ -91,7 +91,7 @@ public class Student implements Validator {
         //AGE
         int age = student.getAge();
         ValidationUtils.rejectIfEmpty(errors, "age","age.empty");
-        if (age < 0 || age > 100) {
+        if (age < 1 || age > 100) {
             errors.rejectValue("age", "age.range");
         }
 
